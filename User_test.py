@@ -1,5 +1,6 @@
-import unittest # Importing the unittest module
-from user import User # Importing the contact class
+import unittest # Import the unittest module
+from user import User # Import the User class
+from credentials import Credentials # Import the Credentials class
 
 class TestUser(unittest.TestCase):
 
@@ -10,20 +11,12 @@ class TestUser(unittest.TestCase):
         unittest.TestCase: TestCase class that helps in creating test cases
     '''
 
- # Items up here .......
-
     def setUp(self):
         '''
         Set up method to run before each test cases.
         '''
-        self.new_user = User("CollinsKanyiri","collinskanyiri@gmail.com","CollinsKanyiri") # create user object
-
-
-    def test_init(self):
-        '''
-        test_init test case to test if the object is initialized properly
-        '''
-
+        self.new_user = User("CollinsKanyiri","ColloKanyiri") # create user object
+    
 
     def tearDown(self):
         """
@@ -36,8 +29,7 @@ class TestUser(unittest.TestCase):
         test_init test case to test if object utilizes proper instantiation
         """
         self.assertEqual(self.new_user.user_name,"CollinsKanyiri")
-        self.assertEqual(self.new_user.email,"collinskanyiri@gmail.com")
-        self.assertEqual(self.new_user.password,"CollinsKanyiri")
+        self.assertEqual(self.new_user.user_password,"ColloKanyiri")
 
     def test_save_user(self):
         """
@@ -52,7 +44,7 @@ class TestUser(unittest.TestCase):
             this test-case method gives users the ability to save multiple account details
         """
         self.new_user.save_user_details()
-        test_user = User("CollinsKanyiri","collinskanyiri@gmail.com","CollinsKanyiri")  # new user
+        test_user = User("Crispus","cris91")  # new user
         test_user.save_user_details()
         self.assertEqual(len(User.user_list), 2)
 
@@ -63,6 +55,20 @@ class TestUser(unittest.TestCase):
         """
         self.assertEqual(User.display_users(), User.user_list)
    
+    def test_log_in(self):
+        """
+        test to establish whether user can log-in to their credentials
+        """
+        # start by saving user
+        self.new_user.save_user_details()
+
+        test_user = User("collo", "collo96")
+
+        test_user.save_user_details()
+
+        found_credentials = User.log_in("collo", "collo96")
+
+        self.assertEqual(found_credentials, Credentials.credentials_list)
 
 
 
