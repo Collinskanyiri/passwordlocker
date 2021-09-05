@@ -1,3 +1,7 @@
+import unittest
+from credentials import Credentials  # import the credentials class
+
+
 class User:
     """
     class that generates new instances of users
@@ -5,14 +9,13 @@ class User:
 
     user_list=[] # Empty user list
 
-    def __init__(self,user_name,email,password):
+    def __init__(self,user_name,user_password):
+       """
+        define objects (user_name, user_password)
+        """
 
-
- 
-
-        self.user_name = user_name
-        self.email = email
-        self.password = password
+       self.user_name = user_name
+       self.password = user_password
 
     def save_user_details(self):
         """
@@ -27,4 +30,45 @@ class User:
         """
         return cls.user_list
 
- 
+    @classmethod
+    def user_exists(cls, user_name):
+        """
+        method that checks if a user exists in the user list
+        Args:
+            name: name of the user to search 
+
+        Returns:
+            Boolean: true/false depending on whether  user exists
+        """
+
+        for user in cls.user_list:
+            if user.user_name == user_name:
+                return True
+
+        return False
+
+
+    @classmethod
+    def log_in(cls, user_name, user_password):
+        """
+        method for user to log-in to their accounts
+
+        Args:
+            user_name : name of user
+            user_password : password of the user
+
+        Returns:
+            credentials list 
+
+        """
+
+       # search for the user list
+       
+        for user in cls.user_list:
+            if user.user_name == user_name and user.user_password == user_password:
+                return Credentials.credentials_list
+
+        return False
+
+if __name__ == '__main__':
+        unittest.main()
