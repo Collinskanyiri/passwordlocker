@@ -28,7 +28,7 @@ Collins Kanyiri
 
 ##### Support and contact details
 
-    Email:collinskanyiri@gmail.com contact:0799535380 Address:90 Kikuyu
+    Email:collinskanyiri@gmail.com 
 
 ##### License
 
