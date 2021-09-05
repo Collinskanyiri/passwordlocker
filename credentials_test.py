@@ -1,5 +1,6 @@
-import unittest # Importing the unittest module
+import unittest  # Importing the unittest module
 from credentials import Credentials  # Importing the credentials class
+
 
 class TestCredentials(unittest.TestCase):
 
@@ -9,24 +10,24 @@ class TestCredentials(unittest.TestCase):
     Args:
         unittest.TestCase: TestCase class that helps in creating test cases
     '''
+
     def setUp(self):
         '''
         Set up method to run before each test cases.
         '''
-        self.new_credentials = Credentials("Collins","Kanyiri","collo","collo96","collinskanyiri@gmail.com")
-
+        self.new_credentials = Credentials(
+            "Collins", "collinskanyiri@gmail.com", "gmail", "collo96")
 
     def test_init(self):
         '''
         test_init test case to test if the object is initialized properly
-        ''' 
+        '''
 
-        self.assertEqual(self.new_credentials.first_name,"Collins")
-        self.assertEqual(self.new_credentials.last_name,"Kanyiri")
-        self.assertEqual(self.new_credentials.user_name,"collo")
-        self.assertEqual(self.new_credentials.password,"collo96")
-        self.assertEqual(self.new_credentials.email,"collinskanyiri@gmail.com")
-
+        self.assertEqual(self.new_credentials.credentials_user_name, "Collins")
+        self.assertEqual(self.new_credentials.email,
+                         "collinskanyiri@gmail.com")
+        self.assertEqual(self.new_credentials.credentials_site, "gmail")
+        self.assertEqual(self.new_credentials.password, "collo96")
 
     def test_save_credentials(self):
         '''
@@ -34,82 +35,93 @@ class TestCredentials(unittest.TestCase):
         the contact list
         '''
 
-        self.new_credentials.save_credentials() # saving the new contact
-        self.assertEqual(len(Credentials.credentials_list),1) 
+        self.new_credentials.save_credentials()  # saving the new contact
+        self.assertEqual(len(Credentials.credentials_list), 1)
 
     def test_save_multiple_credentials(self):
-            '''
-            test_save_multiple_credentials to check if we can save multiple credentials
-            objects to our credentials_list
-            '''
-            self.new_credentials.save_credentials()
-            test_credentials = Credentials("Charles","Kanyiri","Charleston","Charles_22","charlesKanyiri@gmail.com") # new credentials
-            test_credentials.save_credentials()
-            self.assertEqual(len(Credentials.credentials_list),2)
+        '''
+        test_save_multiple_credentials to check if we can save multiple credentials
+        objects to our credentials_list
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials(
+            "Charles", "charlesKanyiri@gmail.com", "gmail", "chalo22")  # new credentials
+        test_credentials.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list), 2)
 
     def tearDown(self):
-            '''
-            tearDown method that does clean up after each test case has run.
-            '''
-            Credentials.credentials_list = []
+        '''
+        tearDown method that does clean up after each test case has run.
+        '''
+        Credentials.credentials_list = []
 
 # other test cases here
 
     def test_save_multiple_credentials(self):
-            '''
-            test_save_multiple_credentials to check if we can save multiple contact
-            objects to our credentials_list
-            '''
-            self.new_credentials.save_credentials()
-            test_credentials = Credentials("Charles","Kanyiri","Charleston","Charles_22","charlesKanyiri@gmail.com") # new credentials
-            test_credentials.save_credentials()
-            self.assertEqual(len(Credentials.credentials_list),2)
+        '''
+        test_save_multiple_credentials to check if we can save multiple contact
+        objects to our credentials_list
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials(
+            "Charles", "charlesKanyiri@gmail.com", "facebook", "Charles_22")  # new credentials
+        test_credentials.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list), 2)
 
     def test_delete_credentials(self):
-            '''
-            test_delete_credentials to test if we can remove a credentials from our credentials list
-            '''
-            self.new_credentials.save_credentials()
-            test_credentials = Credentials("Charles","Kanyiri","Charleston","Charles_22","charlesKanyiri@gmail.com") # new credentials
-            test_credentials.save_credentials()
+        '''
+        test_delete_credentials to test if we can remove a credentials from our credentials list
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials(
+            "Charles", "charlesKanyiri@gmail.com", "facebook", "Charles_22")   # new credentials
+        test_credentials.save_credentials()
 
-            self.new_credentials.delete_credentials()# Deleting a contact object
+        self.new_credentials.delete_credentials()  # Deleting a contact object
 
-            self.assertEqual(len(Credentials.credentials_list),1)
+        self.assertEqual(len(Credentials.credentials_list), 1)
 
     def test_find_credentials_by_email(self):
-            '''
-            test to check if we can find a credentials by email and display information
-            '''
+        '''
+        test to check if we can find a credentials by email and display information
+        '''
 
-            self.new_credentials.save_credentials()
-            test_credentials = Credentials("Charles","Kanyiri","Charleston","Charles_22","charles.com") # new credentials 
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials(
+            "Charles", "charlesKanyiri@gmail.com", "gmail", "chalo22")  # new credentials
 
-            test_credentials.save_credentials()
+        test_credentials.save_credentials()
 
-            found_credentials = Credentials.find_by_email("charles.com")
+        found_credentials = Credentials.find_by_email(
+            "charlesKanyiri@gmail.com")
 
-            self.assertEqual(found_credentials.first_name, test_credentials.first_name)
+        self.assertEqual(found_credentials.credentials_user_name,
+                         test_credentials.credentials_user_name)
 
     def test_credentials_exists(self):
-            '''
-            test to check if we can return a Boolean if we cannot find the credentials
-            '''
+        '''
+        test to check if we can return a Boolean if we cannot find the credentials
+        '''
 
-            self.new_credentials.save_credentials()
-            test_credentials = Credentials("Charles","Kanyiri","Charleston","Charles_22","charles.com") # new credentials 
-            test_credentials.save_credentials()
+        self.new_credentials.save_credentials()
 
-            credentials_exists = Credentials.credentials_exist("charles.com")
+        test_credentials = Credentials(
+            "Charles", "charlesKanyiri@gmail.com", "gmail", "chalo22")   # new credentials
 
-            self.assertTrue(credentials_exists) 
+        test_credentials.save_credentials()
+
+        credentials_exists = Credentials.credentials_exist("charlesKanyiri@gmail.com")
+
+        self.assertTrue(credentials_exists)
+
     def test_display_all_credentials(self):
-            '''
-            method that returns a list of all credentials saved
-            '''
+        '''
+        method that returns a list of all credentials saved
+        '''
 
-            self.assertEqual(Credentials.display_credentials(),Credentials.credentials_list)
+        self.assertEqual(Credentials.display_credentials(),
+                         Credentials.credentials_list)
 
 
 if __name__ == '__main__':
-    unittest.main()           
+    unittest.main()
