@@ -67,7 +67,7 @@ def main():
     print('\n') 
 
     while True:
-        print("Use thes short codes : cc - create a new_user account with a user_defined password, dc - display credential and user, can -create a new_user account with" 
+        print("Use these short codes : cc - create a new_user account with a user_defined password, dc - display credential and user, can -create a new_user account with" 
               "auto-generated password, ex -exit ")  
         short_code = input().lower()
 
