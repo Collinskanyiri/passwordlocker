@@ -1,9 +1,11 @@
 # PYTHON-PASSWORDLOCKER
+
 Password locker application helps users to generate and store password of various accounts like you can log into your accounts and create new ones.
 
-Date created 30/04/2020
+Date created 4/09/2021
 
 ## AUTHOR
+
 Collins Kanyiri
 
 ## Description
@@ -14,12 +16,10 @@ Collins Kanyiri
    can: create a new_user account with auto-generated password
    ex: exit
 
-
 ### SETUP/INSTALLATION REQUIREMENTS
 
   If you want to use the program clone the repository and run the following command in terminal:
   python3.7 run.py
-
 
 #### Known bugs
 
