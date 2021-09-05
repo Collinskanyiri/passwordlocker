@@ -132,6 +132,20 @@ def main():
             print("\n")
             print(
                 "Welcome {user_name} Your account has been created successfully!\n")
+
+            if user_log_in(user_name, user_password) == None:
+                print("\n")
+                print("Invalid user name or password, try again")
+                print("\n")
+
+            else:
+
+                user_log_in(user_name, user_password)
+                print("\n")
+                print("Welcome {user_name} You have successfully logged into your Account")
+                print("\n")
+                print("*Use the following codes to navigate*")
+                print("\n")    
               
         elif short_code == "lg":
             """
