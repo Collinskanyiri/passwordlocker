@@ -10,16 +10,13 @@ Collins Kanyiri
 
 ## Description
 
-   When you run the program it first instructs you to enter your username and it lets you choose some short commands which are:
-   cc: create a new_user account with a user_defined password
-   dc: display credentials and user
-   can: create a new_user account with auto-generated password
-   ex: exit
+   When you run the program it first instructs you to enter your username and it lets you choose some short commands.
 
 ### SETUP/INSTALLATION REQUIREMENTS
 
   If you want to use the program clone the repository and run the following command in terminal:
-  python3.7 run.py
+  python3.8
+  ./run.py
 
 #### Known bugs
 
