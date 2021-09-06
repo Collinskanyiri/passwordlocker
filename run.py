@@ -1,6 +1,5 @@
 #!/usr/bin/env python3.8
 
-from math import log
 from credentials import Credentials
 from user import User
 import random
@@ -10,11 +9,11 @@ Run module
 """
 
 
-def create_user(user_name, password):
+def create_user(user_name, user_password):
     '''
     Function that creates new user
     '''
-    new_user = User(user_name, password)
+    new_user = User(user_name, user_password)
     return new_user
 
 
@@ -118,7 +117,7 @@ def main():
             short_code to create new account on passwordlocker
             """
             print("\n")
-            print(" New password locker account")
+            print(" New passwordlocker account")
             print("-*-"*10)
 
             print("User name ...")
@@ -130,8 +129,7 @@ def main():
             save_user_details(create_user(user_name, user_password))
 
             print("\n")
-            print(
-                "Welcome {user_name} Your account has been created successfully!\n")
+            print(f"Welcome {user_name} Your account has been created successfully!\n")
 
             if user_log_in(user_name, user_password) == None:
                 print("\n")
@@ -146,7 +144,8 @@ def main():
                 print("\n")
                 print("*Use the following codes to navigate*")
                 print("\n")    
-              
+            continue
+
         elif short_code == "lg":
             """
             short_code to allow user to Log-in to already existing account on passwordlocker 
@@ -173,9 +172,11 @@ def main():
                 print("\n")
                 print("*Use the following codes to navigate*")
                 print("\n")
+           
+            
+            continue
 
-                
-                while True:
+            while True:
                     print("""Use these short codes:
                     cc - create a new credentials_user account with a user_defined password,\n
                     can -create a new_credentials_user account with auto-generated password,\n
@@ -291,11 +292,11 @@ def main():
                             print("{credentials_user_name}\'s credentials")
                             print("*"*10)
 
-                            for Credentials in display_credentials(credentials_name):
-                                print("Site ..... {credentials.credentials_site}")
-                                print("UserName .... {credentials.credentials_user_name}")
-                                print("Email .... {credentials.email}")
-                                print("Password .... {credentials.credentials_password}")
+                            for email in display_credentials(credentials_name):
+                                print("Site ..... {email.credentials_site}")
+                                print("UserName .... {email.credentials_user_name}")
+                                print("Email .... {email.email}")
+                                print("Password .... {email.credentials_password}")
                                 print("*"*10)
                         else:
                             print("\n")
@@ -308,12 +309,10 @@ def main():
                         credentials_name = input()
 
                         if check_existing_credentials(credentials_name):
-                            delete_credentials_name = find_credentials(
-                                credentials_name)
-                            # print(f" {delete_credentials_name}")
+                            delete_credentials = (credentials_name, credentials_password, credentials_user_name, credentials_site, email)
                             print("Your stored credentials for: {credentials_name} has been deleted Successfully \n")
                         else:
-                            print(" The Credentials does not Exist ⚠️ ")
+                            print(" The Credentials does not Exist ")
 
                     elif short_code == "log":
                         print("logging out")
