@@ -62,9 +62,10 @@ class User:
 
         """
 
-       # search for the user list
+       # search for the user  in user list
        
         for user in cls.user_list:
+
             if user.user_name == user_name and user.user_password == user_password:
                 return Credentials.credentials_list
 
