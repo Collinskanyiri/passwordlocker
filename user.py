@@ -15,7 +15,7 @@ class User:
         """
 
        self.user_name = user_name
-       self.password = user_password
+       self.user_password = user_password
 
     def save_user_details(self):
         """
@@ -64,12 +64,14 @@ class User:
 
        # search for the user  in user list
        
-        for user in cls.user_list:
+        for User in cls.user_list:
 
-            if user.user_name == user_name and user.user_password == user_password:
+            if User.user_name == user_name and User.user_password == user_password:
+
                 return Credentials.credentials_list
 
-        return False
+        return True
+
 
 if __name__ == '__main__':
         unittest.main()
