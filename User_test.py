@@ -1,3 +1,4 @@
+
 import unittest # Import the unittest module
 from user import User # Import the User class
 from credentials import Credentials # Import the Credentials class
@@ -62,15 +63,13 @@ class TestUser(unittest.TestCase):
         # start by saving user
         self.new_user.save_user_details()
 
-        test_user = User("collo", "collo96")
+        test_user = User("Crispus","cris91")
 
         test_user.save_user_details()
 
-        found_credentials = User.log_in("collo", "collo96")
+        found_credentials = User.log_in("Crispus","cris91")
 
-        self.assertEqual(found_credentials, Credentials.credentials_list)
-
-
+        self.assertEqual(found_credentials,Credentials.credentials_list)
 
 if __name__ == '__main__':
     unittest.main()
