@@ -55,6 +55,7 @@ class Credentials:
         """
         for credentials in Credentials.credentials_list:
             if credentials.credentials_name == credentials_name:
+                Credentials.credentials_list.append(credentials)
                 return Credentials.credentials_list
 
     @classmethod
@@ -73,16 +74,16 @@ class Credentials:
                 return credentials
     
     @classmethod
-    def find_credentials(cls, credentials_site):
+    def find_credentials(cls, credentials_name):
         """
-        method that takes in credentials site and returns the credentials that matches that name.
+        method that takes in credentials name and returns the credentials that matches that name.
 
         Returns :
             credentials name that matches the input given.
         """
 
         for credentials in cls.credentials_list:
-            if credentials_site == credentials_site:
+            if credentials_name == credentials_name:
                 return credentials
 
     @classmethod
