@@ -31,7 +31,7 @@ class User:
         return cls.user_list
 
     @classmethod
-    def user_exists(cls, user_name):
+    def check_existing_users(cls, user_name,user_password):
         """
         method that checks if a user exists in the user list
         Args:
@@ -42,10 +42,10 @@ class User:
         """
 
         for user in cls.user_list:
-            if user.user_name == user_name:
+            if user.user_name == user_name and user.user_password==user_password:
                 return True
-
-        return False
+            else:
+                return False
 
 
     @classmethod
@@ -70,7 +70,8 @@ class User:
 
                 return Credentials.credentials_list
 
-        return True
+
+        return False
 
 
 if __name__ == '__main__':
