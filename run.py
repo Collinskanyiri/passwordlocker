@@ -23,9 +23,13 @@ def save_user_details(User):
     '''
     User.save_user_details()
 
+def find_user(user_name):
+    """
+    function to find credentials based on credentials_name 
+    """
+    return User.find_user(user_name)
 
-def check_existing_users(user_name,user_password,user_log_in_name ,user_log_in_password):
-
+def check_existing_users(user_name, user_password, user_log_in_name, user_log_in_password):
     '''
     Function that checks if a user account  exists
     '''
@@ -56,30 +60,24 @@ def create_credentails(credentials_name, credentials_user_name, fname, lname, em
     Function to create new credentials
     '''
 
-    new_credentails = Credentials(credentials_name, credentials_user_name, fname, lname, email, credentials_password, credentials_site)
+    new_credentails = Credentials(credentials_name, credentials_user_name,
+                                  fname, lname, email, credentials_password, credentials_site)
 
     return new_credentails
 
 
-def save_credentials(Credentials):
+def save_credentials(credentials_name):
     '''
     Function to save credentials
     '''
-    Credentials.save_credentials()
+    credentials_name.save_credentials()
 
 
 def check_existing_credentials(credentials_name):
     '''
-    Function that checks if a user credentials_site exists
+    Function that checks if a user credentials_name exists
     '''
     return Credentials.credentials_exist(credentials_name)
-
-
-# def checking_existing_credentials(email):
-#     '''
-#     Function that check if credentials exists with that email and return a Boolean
-#     '''
-#     return Credentials.credentials_exist(email)
 
 
 def display_credentials(credentials_name):
@@ -89,18 +87,18 @@ def display_credentials(credentials_name):
     return Credentials.display_credentials(credentials_name)
 
 
-def find_credentials(credentials_site):
+def find_credentials(credentials_name):
     """
-    function to find credentials based on credentials_site 
+    function to find credentials based on credentials_name 
     """
-    return Credentials.find_credentials(credentials_site)
+    return Credentials.find_credentials(credentials_name)
 
 
-def del_credentials(credentials):
+def delete_credentials(credentials_name):
     '''
     Function to delete credentials
     '''
-    credentials.delete_credentials()
+    credentials_name.delete_credentials()
 
 
 def main():
@@ -127,13 +125,13 @@ def main():
 
             print("password ...")
             user_password = input()
-            save_user_details(create_user(user_name,user_password))
-            
-            
-            if save_user_details(create_user(user_name,user_password))== save_user_details(create_user(user_name,user_password)):
-               print("\n")
-               print(f"Welcome {user_name} Your account has been created successfully!\n")
-               continue
+            save_user_details(create_user(user_name, user_password))
+
+            if save_user_details(create_user(user_name, user_password)) == save_user_details(create_user(user_name, user_password)):
+                print("\n")
+                print(
+                    f"Welcome {user_name} Your account has been created successfully!\n")
+                continue
             else:
                 (user_name, user_password) == None
                 print("\n")
@@ -152,16 +150,17 @@ def main():
 
             print("Enter the password")
             user_log_in_password = input()
-            user_log_in(user_log_in_name,user_log_in_password)
-            if check_existing_users != False :
-               print("\n")
-               print("Welcome.")
-               print("\n")
-               print("You have successfully logged into your Account")
-               print("\n")
-               print("*Use the following codes to navigate*")
-               print("\n")
-            
+
+            user_log_in(user_log_in_name, user_log_in_password)
+            if check_existing_users != False:
+                print("\n")
+                print("Welcome.")
+                print("\n")
+                print("You have successfully logged into your Account")
+                print("\n")
+                print("*Use the following codes to navigate*")
+                print("\n")
+
             else:
                 user_log_in(user_name, user_password) == None
                 print("\n")
@@ -170,7 +169,7 @@ def main():
                 break
         else:
             print("invalid input")
-            break        
+            break
         while True:
 
             print("""Use these short codes:
@@ -183,133 +182,144 @@ def main():
             short_code = input().lower()
 
             if short_code == "cc":
-                        print("new credentials_user_name with a user_defined password")
-                        print("-*-" * 10)
-                        
-                        print("credentials name ...")
-                        credentials_name = input()
+                print("new credentials_user_name with a user_defined password")
+                print("-*-" * 10)
 
-                        print("First name ....")
-                        fname = input()
+                print("credentials name ...")
+                credentials_name = input()
 
-                        print("Last name ...")
-                        lname = input()
+                print("First name ....")
+                fname = input()
 
-                        print("Enter username ...")
-                        credentials_user_name = input()
+                print("Last name ...")
+                lname = input()
 
-                        print("""What account would like to create credentials for?\n
+                print("Enter username ...")
+                credentials_user_name = input()
+
+                print("""What account would like to create credentials for?\n
                                eg; Facebook""")
-                        credentials_site = input()
+                credentials_site = input()
 
-                        print("Email Address ...")
-                        email = input()
+                print("Email Address ...")
+                email = input()
 
-                        print("Enter a password")
-                        credentials_password = input()
+                print("Enter a password")
+                credentials_password = input()
 
-                        save_credentials(create_credentails(credentials_name, credentials_user_name, fname,lname, email, credentials_password, credentials_site))
-                        print("\n")
-                        print(f"A new {credentials_name } account by { fname } has successfully been created")
-                        print(f"The username is {credentials_user_name} and the password is {credentials_password} ")
-                        print("\n")
+                save_credentials(create_credentails(credentials_name, credentials_user_name,
+                                 fname, lname, email, credentials_password, credentials_site))
+                print("\n")
+                print(
+                    f"A new {credentials_name } account by { fname } has successfully been created")
+                print(
+                    f"The username is {credentials_user_name} and the password is {credentials_password} ")
+                print("\n")
 
             elif short_code == "can":
-                       print("new credentials_user_name with auto-generated password")
-                       print("-*-"*10)
+                print("new credentials_user_name with auto-generated password")
+                print("-*-"*10)
 
-                       print("credentials name ...")
-                       credentials_name = input()
+                print("credentials name ...")
+                credentials_name = input()
 
-                       print("First name ....")
-                       fname = input()
+                print("First name ....")
+                fname = input()
 
-                       print("Last name ...")
-                       lname = input()
+                print("Last name ...")
+                lname = input()
 
-                       print("Enter username ...program will generate a password for you")
-                       credentials_user_name = input() 
+                print("Enter username ...program will generate a password for you")
+                credentials_user_name = input()
 
-                       print("""What account would like to create credentials for?\n
+                print("""What account would like to create credentials for?\n
                                eg; Facebook""")
-                       credentials_site = input()
+                credentials_site = input()
 
-                       print("Email Address ...")
-                       email = input()
+                print("Email Address ...")
+                email = input()
 
-                       password_generator = "12345678910!@#$%^&*()+-?><abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                       credentials_password = "".join(random.sample(password_generator, 8))
-                       print("Password")
+                password_generator = "12345678910!@#$%^&*()+-?><abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                credentials_password = "".join(
+                    random.sample(password_generator, 8))
+                print("Password")
 
-                       save_credentials (create_credentails(credentials_name, credentials_user_name, fname, lname, email, credentials_password, credentials_site))
-                       print("\n")
-                       print(f"The username is {credentials_user_name} and the password is {credentials_password} ")
-                       print("\n")
+                save_credentials(create_credentails(credentials_name, credentials_user_name,
+                                 fname, lname, email, credentials_password, credentials_site))
+                print("\n")
+                print(
+                    f"The username is {credentials_user_name} and the password is {credentials_password} ")
+                print("\n")
 
             elif short_code == "sv":
-                        print("\n")
-                        print("add credentials to an already exiting account")
-                        print("-*-"*10)
+                print("\n")
+                print("add credentials to an already exiting account")
+                print("-*-"*10)
 
-                        print("credentials name ...")
-                        credentials_name = input()
+                print("credentials name ...")
+                credentials_name = input()
 
-                        print("user name ...")
-                        credentials_user_name = input()
+                print("user name ...")
+                credentials_user_name = input()
 
-                        print("Email Address ...")
-                        email = input()
+                print("Email Address ...")
+                email = input()
 
-                        print("Password...")
-                        credentials_password = input()
+                print("Password...")
+                credentials_password = input()
 
-                        print("""What account would like to create credentials for?\n
+                print("""What account would like to create credentials for?\n
                                eg; Facebook""")
-                        credentials_site = input()
+                credentials_site = input()
 
-                        save_credentials(create_credentails(credentials_name,fname,lname, credentials_user_name, email, credentials_password, credentials_site))
+                save_credentials(create_credentails(credentials_name, fname, lname,
+                                 credentials_user_name, email, credentials_password, credentials_site))
 
-                        print("\n")
-                        print(f"Credentials for {credentials_name} have been successfully saved !\n")
-                        print("\n")
-                    
+                print("\n")
+                print(
+                    f"Credentials for {credentials_name} have been successfully saved !\n")
+                print("\n")
+
             elif short_code == "dc":
-                        print("\n")
-                        print("display credentials")
-                        print("-*-"*10)
-                        print("display credentials for ...")
-                        credentials_name = input()
+                print("\n")
+                print("display credentials")
+                print("-*-"*10)
+                print("display credentials for ...")
+                credentials_name = input()
 
-                        if display_credentials(credentials_name)== Credentials.display_credentials(credentials_name):
-                            print("\n")
-                            print(f"{credentials_name}\'s credentials")
-                            print("*"*10)
-                            print(f"Site ..... {credentials_site}")
-                            print(f"UserName .... {credentials_user_name}")
-                            print(f"Email .... {email}")
-                            print(f"Password .... {credentials_password}")
-                            print("*"*10)
-                        else:
-                            print("\n")
-                            print("Sorry, there is no account maching your details.")
-                            print("\n")
+                if  find_credentials(credentials_name):
+                    display_credentials(credentials_name)
+                    print("\n")
+                    print(f"{credentials_name}\'s credentials")
+                    print("*"*10)
+                    print(f"Site ..... {credentials_site}")
+                    print(f"UserName .... {credentials_user_name}")
+                    print(f"Email .... {email}")
+                    print(f"Password .... {credentials_password}")
+                    print("*"*10)
+                else:
+                    print("\n")
+                    print("Sorry, there is no account maching your details.")
+                    print("\n")
 
             elif short_code == "del":
-                        
-                        print("Enter name of credentials you want to delete")
-                        credentials_name = input()
 
-                        if check_existing_credentials(credentials_name):
-                            delete_credentials = (credentials_name, credentials_password, credentials_user_name, credentials_site, email)
-                            print(f"Your stored credentials for: {credentials_name} has been deleted Successfully \n")
-                        else:
-                            print(" The Credentials does not Exist ")
-               
+                print("Enter name of credentials you want to delete")
+                credentials_name = input()
+
+                if find_credentials(credentials_name):
+                    delete_credentials(credentials_name)
+                    print(f"Your stored credentials for: {credentials_name} has been deleted Successfully \n")
+                else:
+                    print(" The Credentials does not Exist ")
+
             elif short_code == "ex":
-                     print("Bye ....")
-                    
+                print("Bye ....")
+
             else:
-                        print("Invalid command")
-                        break
+                print("Invalid command")
+                break
+
+
 if __name__ == '__main__':
     main()
